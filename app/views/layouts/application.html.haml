@@ -18,6 +18,8 @@
           = link_to 'AwesomeEvents', root_path, class: 'navbar-brand'
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
+            %li
+              = link_to 'ログアウト', new_event_path
             - if logged_in?
               %li
                 = link_to 'ログアウト', logout_path
@@ -25,7 +27,6 @@
               %li
                 = link_to 'Twitterでログイン', '/auth/twitter'
     .container
-      - if flash[:notice]
-        .alert.alert-success
-          = flash[:notice]
+      - flash.each do |key, value|
+        = content_tag(:div, value, class: "alert alert-#{ key }")
       = yield
