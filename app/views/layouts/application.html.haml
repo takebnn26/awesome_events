@@ -27,7 +27,6 @@
               %li
                 = link_to 'Twitterでログイン', '/auth/twitter'
     .container
-      - if flash[:notice]
-        .alert.alert-success
-          = flash[:notice]
+      - flash.each do |key, value|
+        = content_tag(:div, value, class: "alert alert-#{ key }")
       = yield
